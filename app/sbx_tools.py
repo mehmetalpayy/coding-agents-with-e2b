@@ -8,6 +8,7 @@ import fnmatch
 import glob as glob_module
 import re
 from typing import Dict, List, Any, Optional
+from rapidfuzz import fuzz
 
 
 class ToolError(Exception):
