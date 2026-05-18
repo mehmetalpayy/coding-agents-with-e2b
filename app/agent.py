@@ -1,6 +1,6 @@
 import json
 import re
-from typing import Callable, Generator, Literal, Optional
+from typing import Callable, Generator, Optional
 
 from openai import OpenAI
 from e2b_code_interpreter import Sandbox
@@ -24,7 +24,7 @@ def clean_messages_for_llm(messages: list[dict]) -> list[dict]:
 
 def compress_messages(client: OpenAI, messages: list[dict]) -> list[dict]:
     response = client.responses.create(
-        model="gpt-4.1-nano",
+        model="gpt-4.1",
         input=[
             {"role": "developer", "content": SYSTEM_PROMPT_COMPRESS_MESSAGES},
             *messages,
@@ -107,7 +107,7 @@ def coding_agent(
     system: Optional[str] = None,
     messages: Optional[list[dict]] = None,
     usage: Optional[int] = 0,
-    model: Literal["gpt-4.1-mini", "gpt-4.1"] = "gpt-4.1-mini",
+    model: str = "gpt-4.1",
     **model_kwargs,
 ) -> Generator:
     if system is None:
